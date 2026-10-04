@@ -78,39 +78,27 @@
 
   function start(root) {
     const doc = root.document;
-    const selector = doc.getElementById("platform-choice");
-    const status = doc.getElementById("platform-status");
     const links = Array.from(doc.querySelectorAll("[data-package]"));
     const details = doc.getElementById("release-details");
-    if (!selector || !status) return;
+    if (!links.length) return;
 
     const nav = root.navigator || {};
     const env = readEnvironment(nav);
     let detected = detectPlatform(env);
     function update() {
-      const choice = selector.value === "auto" ? detected.kind : selector.value;
-      const recommendation = {
-        mac: "BuildersDoor.dmg",
-        "windows-x64": "Windows x64",
-        "windows-arm64": "Windows ARM64"
-      }[choice];
       links.forEach((link) => {
-        link.classList.toggle("recommended", link.dataset.package === ({ mac: "mac", "windows-x64": "win-x64", "windows-arm64": "win-arm64" }[choice] || ""));
+        const recommended = link.dataset.package === detected.package;
+        link.classList.toggle("recommended", recommended);
+        link.closest(".download-card").classList.toggle("recommended", recommended);
       });
-      if (selector.value === "auto") {
-        status.textContent = recommendation ? detected.reason : detected.reason;
-      } else {
-        status.textContent = recommendation ? "Selected: " + recommendation + "." : "No compatible package is recommended for this selection. Choose a download below.";
-      }
     }
-    selector.addEventListener("change", update);
     update();
 
     if (nav.userAgentData && typeof nav.userAgentData.getHighEntropyValues === "function") {
       nav.userAgentData.getHighEntropyValues(["architecture", "bitness", "platform", "platformVersion"]).then((values) => {
         env.hints = values;
         detected = detectPlatform(env);
-        if (selector.value === "auto") update();
+        update();
       }).catch(() => {});
     }
 
