@@ -1,20 +1,20 @@
 {
   "packages": [
     {
-      "bytes": 64804269,
+      "bytes": 64804265,
       "file": "BuildersDoor-win-x64.zip",
       "rid": "win-x64",
-      "sha256": "f6103aa5e451c16f7d50ff4b32103d34ae88ad1ec55c399646cc2d702b1048e1"
+      "sha256": "fce58798844136f067ff6c197c90bedebed8522f22a5f51584bedda0984877a2"
     },
     {
-      "bytes": 62338756,
+      "bytes": 62338746,
       "file": "BuildersDoor-win-arm64.zip",
       "rid": "win-arm64",
-      "sha256": "a836503cb46e396e03f19cc50c4964165f410f9fb6b289e79e6b0d13c98e5539"
+      "sha256": "c12f8d9abba97cd445a427f9db47c801983de53e7e079a96571205accde45838"
     }
   ],
   "signed": false,
-  "source_sha256": "a646fb66b9da8cc9d435a7b2657244f0e4f233fd74cf4d9fb4bf30b1d167bb22",
+  "source_sha256": "73d576da0ece6c3fdebdecc18274a6e032c45102616ed78fa856b9216fa27769",
   "version": "1.0.0",
   "windows_runtime_verified": false
 }
